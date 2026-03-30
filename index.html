@@ -12598,10 +12598,26 @@ Wherever there is Shree Krishna, the Lord of all Yog, and wherever there is Arju
 <div id="topTrigger"></div>
 <a href="#" id="topBtn">↑</a>
 <script>
+<script>
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js")
-    .then(() => console.log("PWA Ready"));
+  navigator.serviceWorker.register("sw.js").then(reg => {
+
+    // Detect updates
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+
+      newWorker.onstatechange = () => {
+        if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+          if (confirm("New version available. Reload?")) {
+            window.location.reload();
+          }
+        }
+      };
+    };
+
+  });
 }
+</script>
 </script>
 </body>
 </html>
