@@ -1,4 +1,4 @@
-const CACHE_NAME = "gita-app-v2";
+const CACHE_NAME = "gita-app-v3";
 
 self.addEventListener("install", event => {
   event.waitUntil(
